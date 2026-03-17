@@ -1,7 +1,7 @@
 import requests
 import json as js
-import openai as oai
 import yfinance as yf
+from openai import OpenAI
 
 api_key_AI = "sk-ZZh65j-L040DIfJR0l1Owg"
 api_key_news = "7013901d945a4d71961a35b20cc62c38"

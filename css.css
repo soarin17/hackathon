@@ -1,0 +1,72 @@
+@keyframes myAnimationName {
+    0% {
+        background-color: blue;
+    }
+    25% {
+        background-color: red;
+    }
+    50% {
+        background-color: rgb(242, 255, 0);
+    }
+    75% {
+        background-color: rgb(0, 255, 81);
+    }
+    100% {
+        background-color: blue;
+    }
+    0% {
+        transform: rotate(90deg);
+    }
+    25% {
+        transform: rotate(180deg);
+    }
+    50% {
+        transform: rotate(270deg);
+    }
+    75% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(450deg);
+    }
+    0% {
+        border-radius: -10px;
+    }
+    50% {
+        border-radius: 50px;
+    }
+    100% {
+        border-radius: -10px;
+    }
+    0% {
+        box-sizing: border-box;
+    }
+    50% {
+        box-sizing: content-box;
+    }
+    100% {
+        box-sizing: inherit;
+    }
+    0% {
+        border-color: rgb(255, 0, 0);
+    }
+    25% {
+        border-color: rgb(0, 55, 255);
+    }
+    50% {
+        border-color: rgba(210, 0, 203, 0.557);
+    }
+    75% {
+        border-color: rgb(255, 94, 0);
+    }
+    100% {
+        border-color: rgb(0, 0, 255);
+    }
+}
+div {
+    width: 1280px;
+    height: 551px;
+    background-color: blue;
+    animation-name: myAnimationName;
+    animation-duration: 20s;
+}
