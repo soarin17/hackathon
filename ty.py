@@ -1,17 +1,43 @@
-import requests
-import json as js
+from flask import Flask, render_template, jsonify
 import yfinance as yf
-from openai import OpenAI
+import requests
 
-api_key_AI = "sk-ZZh65j-L040DIfJR0l1Owg"
-api_key_news = "7013901d945a4d71961a35b20cc62c38"
-ai_url = "https://hackathonlite-production.up.railway.app"
-MODEL = "gemini-3-flash-preview"
+app = Flask(__name__)
 
-#NEWS DATA, HAS TO BE FILTERED
-url = ('https://newsapi.org/v2/top-headlines?'
-       '&'
-       'apiKey=7013901d945a4d71961a35b20cc62c38')
-response = requests.get(url)
-print(response.json())
+@app.route("/")
+def home():
+    return render_template("website.html")
 
+NEWS_API_KEY = "7013901d945a4d71961a35b20cc62c38"
+
+@app.route("/stock/<symbol>")
+def get_stock(symbol):
+    try:
+        # Get stock data
+        stock = yf.Ticker(symbol)
+        hist = stock.history(period="1mo")
+        price = hist["Close"].iloc[-1]
+
+        # Simple prediction
+        avg = hist["Close"].mean()
+        prediction = "Likely Up" if price > avg else "Likely Down"
+
+        # Get news
+        url = f"https://newsapi.org/v2/everything?q={symbol}&apiKey={NEWS_API_KEY}&pageSize=5"
+        news = requests.get(url).json()
+
+        events = []
+        for article in news.get("articles", []):
+            events.append(article["title"])
+
+        return jsonify({
+            "price": round(price, 2),
+            "prediction": prediction,
+            "events": events
+        })
+
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+if __name__ == "__main__":
+    app.run(debug=True)
