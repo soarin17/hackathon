@@ -1,3 +1,4 @@
+# Hackathon-project. A finance and investing tool to predict the future of specific stocks.
 from flask import Flask, render_template, jsonify
 import yfinance as yf
 import requests
@@ -17,27 +18,23 @@ def get_stock(symbol):
         stock = yf.Ticker(symbol)
         hist = stock.history(period="1mo")
         price = hist["Close"].iloc[-1]
-
-        # Simple prediction
         avg = hist["Close"].mean()
         prediction = "Likely Up" if price > avg else "Likely Down"
-
-        # Get news
         url = f"https://newsapi.org/v2/everything?q={symbol}&apiKey={NEWS_API_KEY}&pageSize=5"
-        news = requests.get(url).json()
-
+        news = requests.get(url, timeout=5).json()
         events = []
         for article in news.get("articles", []):
-            events.append(article["title"])
-
+            if article.get("title"):
+                events.append(article["title"])
         return jsonify({
             "price": round(price, 2),
             "prediction": prediction,
             "events": events
         })
-
     except Exception as e:
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
+    
