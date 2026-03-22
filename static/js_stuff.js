@@ -2,33 +2,28 @@ async function searchStock() {
     const symbol = document.getElementById("symbol").value.toUpperCase();
     const resultDiv = document.getElementById("result");
 
+    resultDiv.classList.remove("visible");
     resultDiv.innerHTML = "Loading...";
+    resultDiv.classList.add("visible");
 
     try {
         const res = await fetch(`/stock/${symbol}`);
         const data = await res.json();
 
         if (data.error) {
-            resultDiv.innerHTML = "Error: " + data.error;
+            resultDiv.innerHTML = `<p style="color:#e05555;">Error: ${data.error}</p>`;
             return;
         }
 
-        let eventsHtml = "<ul>";
-        for (const event of data.events) {
-            eventsHtml += `<li>${event}</li>`;
-        }
-        eventsHtml += "</ul>";
-
         resultDiv.innerHTML = `
-            <h2>${symbol}</h2>
-            <p>Price: $${data.price}</p>
-            <p>Prediction: ${data.prediction}</p>
-            <h3>Big Events:</h3>
-            ${eventsHtml}
+            <h2>${data.symbol}</h2>
+            <div class="price">$${data.price}</div>
+            <h3>AI Analysis</h3>
+            <p>${data.ai_analysis}</p>
         `;
 
     } catch (err) {
-        resultDiv.innerHTML = "Error loading data.";
+        resultDiv.innerHTML = `<p style="color:#e05555;">Error loading data.</p>`;
         console.error(err);
     }
 }

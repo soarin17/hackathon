@@ -2,15 +2,20 @@
 <html>
 <head>
     <title>STONK</title>
-    <script src="/static/js_stuff.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body style="background-color: rgb(255, 255, 255);">
+<body>
     <div class="container">
         <h1>STONK</h1>
-        <input id="symbol" placeholder="Enter stonk symbol">
-        <button onclick="searchStock()">Search</button>
+        <p class="subtitle">Stock Intelligence</p>
+        <div class="search-row">
+            <input id="symbol" placeholder="Enter ticker symbol">
+            <button onclick="searchStock()">Search</button>
+        </div>
     </div>
     <div id="result"></div>
+    <script src="/static/js_stuff.js"></script>
 </body>
 </html>

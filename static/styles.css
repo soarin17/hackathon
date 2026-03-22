@@ -1,11 +1,147 @@
-.container{
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #070d1a;
+    background-image: radial-gradient(ellipse at 20% 20%, #0d1f3c 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 80%, #0a1628 0%, transparent 60%);
+    min-height: 100vh;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #e2eaf4;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(56, 139, 253, 0.4);
+    margin-bottom: 8px;
+}
+
+.container {
     width: 80%;
-    height: 200px;
-    text-align: left;
-    margin-top: 50px;
-    box-shadow: rgb(0, 136, 255) 10px 10px 10px;
-    padding: 20px;
-    border-color: rgb(1, 97, 222);
-    background-color: rgb(0, 13, 255);
-    border-radius: 25px;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    padding: 32px 36px;
+    background: linear-gradient(135deg, #0d1f3c 0%, #0a1628 100%);
+    border: 1px solid rgba(56, 139, 253, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(56, 139, 253, 0.08),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: #4a7fc1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+
+.search-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+#symbol {
+    flex: 1;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(56, 139, 253, 0.3);
+    border-radius: 10px;
+    color: #e2eaf4;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#symbol::placeholder {
+    color: #3a5a8a;
+}
+
+#symbol:focus {
+    border-color: rgba(56, 139, 253, 0.7);
+    box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.1);
+}
+
+button {
+    padding: 12px 28px;
+    background: #1a4a8a;
+    border: 1px solid rgba(56, 139, 253, 0.5);
+    border-radius: 10px;
+    color: #a8c8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+button:hover {
+    background: #1f5aaa;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(56, 139, 253, 0.2);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#result {
+    width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 28px 36px;
+    background: linear-gradient(135deg, #0d1f3c 0%, #0a1628 100%);
+    border: 1px solid rgba(56, 139, 253, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(56, 139, 253, 0.06);
+    display: none;
+}
+
+#result.visible {
+    display: block;
+}
+
+#result h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+}
+
+#result .price {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #4a9eff;
+    margin-bottom: 20px;
+}
+
+#result h3 {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a7fc1;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(56, 139, 253, 0.15);
+    padding-bottom: 8px;
+}
+
+#result p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #c0d4ec;
+    white-space: pre-line;
 }
