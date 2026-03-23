@@ -34,6 +34,7 @@ You are a stock analyst. Given the following data for {symbol}, provide:
 2. A brief summary of the recent news and how it might affect the stock.
 3. A simple recommendation (Buy, Hold, Sell) based on the analysis.
 4. A short summary of the stock performance and news headlines.
+5. You should not try to make text bold in the analysis, 
 
 
 Stock: {symbol}
@@ -63,4 +64,4 @@ Keep your response concise, clear and simple.
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__": 
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
